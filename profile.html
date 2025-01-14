@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DrinkBuddy - פרופיל משתמש</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <h1>DrinkBuddy</h1>
+    <p>שלום דני! נהל את הפרופיל שלך והגדרות אישיות כאן.</p>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="profile-container">
+      <!-- Personal Details Section -->
+      <section id="personal-details">
+        <h2>פרטים אישיים</h2>
+        <form id="personal-form">
+          <label for="age">גיל:</label>
+          <input type="number" id="age" name="age" min="1" required>
+
+          <label for="weight">משקל (בק"ג):</label>
+          <input type="number" id="weight" name="weight" min="1" required>
+
+          <label for="activity">רמת פעילות:</label>
+          <select id="activity" name="activity" required>
+            <option value="">בחר רמת פעילות</option>
+            <option value="low">נמוכה</option>
+            <option value="moderate">בינונית</option>
+            <option value="high">גבוהה</option>
+          </select>
+
+          <button type="submit">עדכן פרטים</button>
+        </form>
+      </section>
+
+      <!-- Personal Settings Section -->
+      <section id="personal-settings">
+        <h2>הגדרות אישיות</h2>
+        <form id="settings-form">
+          <label for="daily-goal">יעד שתייה יומי (בליטרים):</label>
+          <input type="number" id="daily-goal" name="daily-goal" min="0.1" step="0.1" required>
+
+          <label>סוג התראות:</label>
+          <div>
+            <input type="radio" id="audio" name="notification-type" value="audio" required>
+            <label for="audio">קוליות</label>
+
+            <input type="radio" id="text" name="notification-type" value="text" required>
+            <label for="text">טקסט</label>
+          </div>
+
+          <label for="frequency">תדירות התראות (בשעות):</label>
+          <input type="number" id="frequency" name="frequency" min="1" required>
+
+          <button type="submit">שמור הגדרות</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 DrinkBuddy. כל הזכויות שמורות.</p>
+  </footer>
+
+  <script src="profile.js" defer></script>
+</body>
+</html>
