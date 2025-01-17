@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DrinkBuddy Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dashboard-page">
+    <!-- Header -->
+    <header class="header">
+      <h1>DrinkBuddy</h1>
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col">
+            <a href="home.html" class="btn btn-info">
+              <i class="bi bi-house"></i> Home
+            </a>
+          </div>
+          <div class="col">
+            <a href="analysis.html" class="btn btn-primary">
+              <i class="bi bi-bar-chart"></i> Analysis
+            </a>
+          </div>
+          <div class="col">
+            <a href="profile.html" class="btn btn-secondary">
+              <i class="bi bi-person"></i> Profile
+            </a>
+          </div>
+          <div class="col">
+            <a href="https://us-east-1k3uuybpxr.auth.us-east-1.amazoncognito.com/login/continue?client_id=6k3bof5l7k40ppo8lp3ugafhbg&redirect_uri=https%3A%2F%2Fdrink-buddy-s3.s3.us-east-1.amazonaws.com%2Fhome.html&response_type=code&scope=email+openid+phone" class="btn btn-success">
+              <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+          </div>
+          <div class="col">
+            <a href="notifications.html" class="btn btn-warning">
+              <i class="bi bi-bell"></i> Notifications
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Dashboard Grid -->
+    <main class="dashboard-grid container mt-5">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card reminders-card">
+            <h2>Reminders</h2>
+            <!-- Reminders content here -->
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card water-intake-card">
+            <h2>Water Intake</h2>
+            <div id="water-intake">
+              <div class="cup">
+                <div class="remained" id="remained">
+                  <span id="liters"></span>
+                  <small>Left to drink</small>
+                </div>
+                <div class="percentage" id="percentage"></div>
+              </div>
+              <p class="text">How many glasses of water you drank</p>
+              <div class="cups">
+                <div class="cup cup-small">250 ml</div>
+                <div class="cup cup-small">250 ml</div>
+                <div class="cup cup-small">250 ml</div>
+                <div class="cup cup-small">250 ml</div>
+                <div class="cup cup-small">250 ml</div>
+                <div class="cup cup-small">250 ml</div>
+                <div class="cup cup-small">250 ml</div>
+                <div class="cup cup-small">250 ml</div>
+              </div>
+              <form id="custom-intake-form">
+                <input
+                  type="number"
+                  id="custom-amount"
+                  placeholder="Or enter a custom quantity"
+                  min="1"
+                />
+                <button type="submit">Add</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card daily-progress-card">
+            <h2>Daily Progress</h2>
+            <div class="progress-circle">
+              <p><span>0%</span></p>
+            </div>
+            <p>You drank 0 liters out of 2 liters</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="scripts/main.js"></script>
+    <script src="scripts/home.js" defer></script>
+    <script src="scripts/water-tracking.js" defer></script>
+  </body>
+</html>

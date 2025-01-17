@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DrinkBuddy - Analysis and Persistence</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <h1>DrinkBuddy</h1>
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col">
+            <a href="home.html" class="btn btn-info">
+              <i class="bi bi-house"></i> Home
+            </a>
+          </div>
+          <div class="col">
+            <a href="analysis.html" class="btn btn-primary">
+              <i class="bi bi-bar-chart"></i> Analysis
+            </a>
+          </div>
+          <div class="col">
+            <a href="profile.html" class="btn btn-secondary">
+              <i class="bi bi-person"></i> Profile
+            </a>
+          </div>
+          <div class="col">
+            <a href="login.html" class="btn btn-success">
+              <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+          </div>
+          <div class="col">
+            <a href="notifications.html" class="btn btn-warning">
+              <i class="bi bi-bell"></i> Notifications
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mt-4">
+      <div class="row">
+        <!-- Water Consumption Chart -->
+        <section id="consumption-chart" class="col-md-6 mb-4">
+          <h2 class="text-center">Water Consumption Over Time</h2>
+          <canvas id="waterChart"></canvas>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="col-md-6">
+          <h2 class="text-center">Achievements</h2>
+          <ul id="achievement-list" class="list-group">
+            <li class="list-group-item">
+              You met your goal for 5 consecutive days! 🏆
+            </li>
+            <li class="list-group-item">
+              You met your weekly goal with an average consumption of 2.1 liters
+              per day! 💪
+            </li>
+          </ul>
+          <div class="text-center mt-3">
+            <button id="share-achievements" class="btn btn-primary">
+              Share Achievements
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="scripts/main.js"></script>
+    <script src="scripts/analysis.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
