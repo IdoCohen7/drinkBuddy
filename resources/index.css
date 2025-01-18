@@ -1,12 +1,15 @@
 /* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif; /* פונט ברירת מחדל */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
   background: linear-gradient(to bottom, #73b8f9, #42a0f9);
+  background-image: url('../resources/img/background.png'); /* נתיב לתמונה */
+  background-repeat: repeat; /* מאפשר חזרות */
+  background-position: top left; /* מיקום תחילת החזרות */
 }
 
 /* Container */
@@ -15,9 +18,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 800px;
-  width: 90%;
-  background: white;
+  max-width: 1000px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8); /* לבן עם שקיפות של 80% */
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
@@ -42,7 +45,7 @@ body {
 
 /* Question */
 .question {
-  font-size: 18px;
+  font-size: 30px;
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -61,7 +64,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 16px;
+  font-size: 25px;
 }
 
 .option:hover {
@@ -85,6 +88,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   display: inline-block;
+  font-size: 25px;
 }
 
 .next-button.disabled, .save-button.disabled {
@@ -94,12 +98,16 @@ body {
 
 /* Scrollable Container */
 .scrollable-container {
-  max-height: 200px;
+  height: 150px;
+  width: 300px;
   overflow-y: auto;
-  border: 1px solid #ddd;
+  border: none;
   border-radius: 5px;
   padding: 10px;
   background: #f9f9f9;
+  font-size: 25px;
+  text-align: center;
+
 }
 
 .scrollable {
@@ -109,17 +117,18 @@ body {
 }
 
 .scrollable li {
-  padding: 10px;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  margin: 5px 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 25px;
+  color: #888;
+  height: 40px;
+  line-height: 40px;
+  transition: color 0.3s, font-size 0.3s;
 }
 
 .scrollable li:hover {
   background: #e6f3ff;
   border-color: #42a0f9;
+  font-size: 30px;
+
 }
 
 .scrollable li.active {
@@ -134,7 +143,7 @@ body {
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 25px;
   box-sizing: border-box;
 }
 
@@ -145,7 +154,7 @@ body {
   margin: 10px 0;
   border: 1px solid #ddd;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 25px;
   box-sizing: border-box;
 }
 
@@ -157,7 +166,7 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 25px;
 }
 
 .notification-input button:hover {
@@ -188,6 +197,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   padding: 5px 10px;
+  font-size: 25px;
 }
 
 .delete-button:hover {
@@ -215,7 +225,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 25px;
   color: #007BFF;
   font-weight: bold;
 }
@@ -232,7 +242,7 @@ body {
 .intake-input-wrapper input {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 25px;
   border: 1px solid #ddd;
   border-radius: 5px;
 }
@@ -243,7 +253,7 @@ body {
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 25px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -255,7 +265,7 @@ body {
 /* Motivation Message */
 #motivationMessage {
   margin: 20px 0;
-  font-size: 16px;
+  font-size: 25px;
   font-weight: bold;
   color: #333;
 }
@@ -266,7 +276,7 @@ body {
 }
 
 .notifications h2 {
-  font-size: 18px;
+  font-size: 25px;
   color: #007BFF;
   margin-bottom: 10px;
 }
@@ -277,7 +287,7 @@ body {
 }
 
 .notifications li {
-  font-size: 14px;
+  font-size: 25px;
   background: #f9f9f9;
   margin: 5px 0;
   padding: 10px;
@@ -305,7 +315,7 @@ body {
   }
 
   .circle-inner {
-    font-size: 16px;
+    font-size: 25px;
   }
 
   .intake-input-wrapper input {
@@ -325,17 +335,84 @@ body {
   }
 
   .circle-inner {
-    font-size: 14px;
+    font-size: 25px;
   }
 
   .notifications h2 {
-    font-size: 16px;
+    font-size: 25px;
   }
 
   .notifications li {
-    font-size: 12px;
-    padding: 8px;
+    background: linear-gradient(to right, #f0f8ff, #e6f7ff);
+    margin: 10px 0;
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, transform 0.3s;
   }
+  
+  .notifications li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .notifications li strong {
+    color: #007BFF;
+    margin-right: 10px;
+  }
+  
+  .notifications li .icon {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #42a0f9;
+  }
+
+  .notification-input button {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #42a0f9, #3586d6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s ease;
+  }
+  
+  .notification-input button:hover {
+    background: linear-gradient(45deg, #3586d6, #42a0f9);
+  }
+  
+  .delete-button {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-button:hover {
+    background-color: #e63939;
+  }
+  .notification-input button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #42a0f9, #3586d6);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+
+.notification-input button:hover {
+  background: linear-gradient(45deg, #3586d6, #42a0f9);
+}
 }
 .modal {
   position: fixed;
@@ -383,3 +460,45 @@ body {
 .close-modal:hover {
   background: #0056b3;
 }
+.label{
+  font-size: 25px;
+}
+.add-water-button{
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* למרכז את התמונה */
+}
+
+p {
+  font-size: 25px;
+}
+
+label{
+  font-size: 25px;
+}
+.question-image {
+  max-width: 200px;
+  max-height: 200px;
+  margin-left: 20px;
+}
+.close-modal {
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+

@@ -3,14 +3,15 @@ const container = document.getElementById("container");
 // Questions data
 const steps = [
   { question: "What's your gender? 👫", options: ["Male 👨", "Female 👩", "Prefer not to say ❓"] },
-  { question: "How tall are you? 📏", type: "scrollable", options: [...Array(201).keys()].map((i) => `${i} cm`) },
-  { question: "How much do you weigh? ⚖️", type: "scrollable", options: [...Array(201).keys()].map((i) => `${i} kg`) },
+  { question: "How tall are you? 📏", type: "scrollable", options: [...Array(201).keys()].map((i) => `${i} cm`), image: "../resources/img/tall.png" },
+  { question: "How much do you weigh? ⚖️", type: "scrollable", options: [...Array(201).keys()].map((i) => `${i} kg`), image: "../resources/img/weigh.png" },
   { question: "What's your age? 🎂", type: "scrollable", options: [...Array(100).keys()].map((i) => `${i + 1} years`) },
   { question: "What time do you usually wake up? ⏰", type: "scrollable", options: generateTimeOptions() },
   { question: "What time do you usually go to bed? 🌙", type: "scrollable", options: generateTimeOptions() },
   { question: "What's your activity level? 🏃", options: ["Sedentary 🛋️", "Light Activity 🚶", "Moderate Active 🏃‍♂️", "Very Active 🏋️‍♀️"] },
   { question: "What's the climate/weather like in your area?", options: ["Hot 🔥", "Temperate ⛅", "Cold ❄️"] },
 ];
+
 
 let currentStep = 0;
 let recommendedWaterIntake = 0;
@@ -30,7 +31,18 @@ function generateTimeOptions() {
   return times;
 }
 
-// Render current step
+// Render welcome screen
+function renderWelcomeScreen() {
+  container.innerHTML = `
+    <div class="welcome-screen">
+      <img src="../resources/img/logo.png" alt="DrinkBuddy Logo" class="logo" />
+      <h1>Welcome to Drink buddy</h1>
+      <p>Your water tracker and daily motivator 💧</p>
+      <button class="next-button" onclick="renderStep()">Next ➡️</button>
+    </div>
+  `;
+}
+
 function renderStep() {
   container.innerHTML = "";
 
@@ -40,11 +52,26 @@ function renderStep() {
   progressBar.innerHTML = `<div class="progress-bar" style="width: ${(currentStep / steps.length) * 100}%"></div>`;
   container.appendChild(progressBar);
 
-  // Question
+  // Container for question and image
+  const questionContainer = document.createElement("div");
+  questionContainer.classList.add("question-container");
+
+  // Add image if available
+  if (steps[currentStep].image) {
+    const image = document.createElement("img");
+    image.src = steps[currentStep].image; // Add the `image` key to your questions
+    image.alt = "Question Illustration";
+    image.classList.add("question-image");
+    questionContainer.appendChild(image);
+  }
+
+  // Question text
   const question = document.createElement("div");
   question.classList.add("question");
   question.innerText = steps[currentStep].question;
-  container.appendChild(question);
+  questionContainer.appendChild(question);
+
+  container.appendChild(questionContainer);
 
   // Options or Scrollable Wheel
   const optionsContainer = document.createElement("div");
@@ -181,11 +208,11 @@ function renderNotificationSettings() {
     <h1>Notification Settings</h1>
     <p>Set up your daily reminders to stay hydrated:</p>
     <div class="notification-input">
-      <label for="reminderTime">Reminder Time:</label>
+      <label for="reminderTime">Reminder Time ⏰</label>
       <input type="time" id="reminderTime" required />
-      <label for="reminderMessage">Reminder Message:</label>
+      <label for="reminderMessage">Reminder Message 📝</label>
       <input type="text" id="reminderMessage" placeholder="Enter your message" />
-      <button class="save-button" onclick="saveNotification()">Add Notification🔔</button>
+      <button class="save-button" onclick="saveNotification()">Add Notification 🔔</button>
     </div>
     <div id="notificationMessage"></div>
     <ul id="notificationList" class="notification-list"></ul>
@@ -223,20 +250,27 @@ function renderNotificationList() {
   if (!notificationList) return;
 
   notificationList.innerHTML = "";
+  if (notifications.length === 0) {
+    notificationList.innerHTML = "<p>No notifications added yet.</p>";
+    return;
+  }
+
   notifications.forEach((notification, index) => {
     const li = document.createElement("li");
     li.innerHTML = `
       <strong>${notification.time}</strong> - ${notification.message}
-      <button class="delete-button" onclick="deleteNotification(${index})">Delete❌</button>
+      <button class="delete-button" onclick="deleteNotification(${index})">X</button>
     `;
     notificationList.appendChild(li);
   });
 }
 
+
 function deleteNotification(index) {
   notifications.splice(index, 1);
   renderNotificationList();
 }
+
 
 function renderHomeScreen() {
   // בדיקה שהמשתמש הגדיר יעד אישי
@@ -255,14 +289,17 @@ function renderHomeScreen() {
   const progressPercentage = Math.min((userIntake / userDailyGoal) * 100, 100);
 
   container.innerHTML = `
-      <h1>Welcome to Your Hydration Tracker</h1>
-      <p><strong>${formattedDate}</strong> | <strong>${formattedTime}</strong></p>
+      <h1>Welcome to Your Water Tracker</h1>
+<p>
+  <strong>📅 ${formattedDate}</strong> | <strong> ⏰ ${formattedTime}</strong>
+</p>
+
       <div class="water-info">
-          <p><strong>Recommended Daily Intake:</strong> ${recommendedWaterIntake} liters</p>
-          <p><strong>Your Daily Goal:</strong> ${userDailyGoal} liters</p>
+          <p><strong>Recommended Daily Intake 💧</strong> ${recommendedWaterIntake} liters</p>
+    <p><strong>Your Daily Goal 🎯</strong> ${userDailyGoal} liters</p>
       </div>
       <div class="progress-section">
-          <h2>Your Progress</h2>
+          <h2> Your Progress 📊</h2>
           <div class="progress-circle">
               <svg class="progress-ring" width="120" height="120">
                   <circle class="progress-ring__background" stroke="#e6e6e6" stroke-width="10" fill="transparent" r="50" cx="60" cy="60" />
@@ -281,10 +318,17 @@ function renderHomeScreen() {
           <p>${userIntake.toFixed(1)} liters / ${userDailyGoal} liters</p>
       </div>
       <div class="intake-input">
-          <button class="add-water-button" onclick="showCupSelection()">Add Water Intake</button>
+          <button class="add-water-button" onclick="showCupSelection()">Add Water Intake💧</button>
       </div>
       <div id="motivationMessage">${getMotivationMessage()}</div>
+      <div class="notifications">
+          <h2>Your Notifications 🔔</h2>
+          <ul class="notification-list" id="notificationList"></ul>
+      </div>
   `;
+
+  // קריאה לפונקציה להצגת ההתראות
+  renderNotificationList();
 }
 
 const cupSizes = [
@@ -344,7 +388,7 @@ function showCupSelection() {
       )
       .join("")}
           </div>
-          <button class="close-modal" onclick="closeModal()">Close</button>
+          <button class="close-modal" onclick="closeModal()">Close ❌</button>
       </div>
   `;
 
@@ -388,4 +432,5 @@ function getMotivationMessage() {
 }
 
 // Initialize
-renderStep();
+
+renderWelcomeScreen();
