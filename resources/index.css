@@ -1,0 +1,385 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(to bottom, #73b8f9, #42a0f9);
+}
+
+/* Container */
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  width: 90%;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* Progress Bar */
+.progress {
+  width: 100%;
+  background: #ddd;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #42a0f9;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Question */
+.question {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  padding: 10px 15px;
+  background: #f1f1f1;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.option:hover {
+  background: #e6f3ff;
+  border-color: #42a0f9;
+}
+
+.option.selected {
+  background: #42a0f9;
+  color: white;
+  border-color: #42a0f9;
+}
+
+/* Buttons */
+.next-button, .save-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.next-button.disabled, .save-button.disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+/* Scrollable Container */
+.scrollable-container {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  background: #f9f9f9;
+}
+
+.scrollable {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.scrollable li {
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.scrollable li:hover {
+  background: #e6f3ff;
+  border-color: #42a0f9;
+}
+
+.scrollable li.active {
+  background: #42a0f9;
+  color: white;
+  border-color: #42a0f9;
+}
+
+.goal-input input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Notifications */
+.notification-input input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.notification-input button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.notification-input button:hover {
+  background: #3586d6;
+}
+
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.notification-list li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+}
+
+.delete-button {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.delete-button:hover {
+  background: #e63939;
+}
+
+/* Progress Circle */
+.progress-circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background: conic-gradient(#007BFF var(--progress), #f0f0f0 var(--progress));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.circle-inner {
+  width: 90%;
+  height: 90%;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+/* Intake Section */
+.intake-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.intake-input-wrapper input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.intake-input-wrapper button {
+  padding: 10px 20px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.intake-input-wrapper button:hover {
+  background: #0056b3;
+}
+
+/* Motivation Message */
+#motivationMessage {
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Notifications Section */
+.notifications {
+  margin-top: 20px;
+}
+
+.notifications h2 {
+  font-size: 18px;
+  color: #007BFF;
+  margin-bottom: 10px;
+}
+
+.notifications ul {
+  list-style: none;
+  padding: 0;
+}
+
+.notifications li {
+  font-size: 14px;
+  background: #f9f9f9;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notifications li strong {
+  color: #007BFF;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #container {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .progress-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .circle-inner {
+    font-size: 16px;
+  }
+
+  .intake-input-wrapper input {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  #container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .progress-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .circle-inner {
+    font-size: 14px;
+  }
+
+  .notifications h2 {
+    font-size: 16px;
+  }
+
+  .notifications li {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 500px;
+}
+.cup-selection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+.cup {
+  text-align: center;
+  cursor: pointer;
+}
+.cup img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+}
+.close-modal {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.close-modal:hover {
+  background: #0056b3;
+}
