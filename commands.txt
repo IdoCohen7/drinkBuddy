@@ -1,0 +1,11 @@
+
+GET FILES FROM BUCKET
+
+aws s3 sync s3://drink-buddy-s3/ ./resources/DrinkBuddy
+
+UPLOAD FILES TO BUCKET
+
+aws s3 sync ./resources/DrinkBuddy s3://drink-buddy-s3/
+
+
+checks

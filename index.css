@@ -1,0 +1,774 @@
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* מיקום התוכן בחלק העליון */
+  min-height: 100vh;
+  margin: 0;
+  background:  url('https://drink-buddy-s3.s3.us-east-1.amazonaws.com/img/background.png');
+  background-repeat: repeat; /* חזרות על התמונה */
+  background-position: center; /* התמונה ממורכזת */
+  background-size: 960px 540px;
+  padding-top: 40px; 
+  transform: scale(0.67); /* מקטין את התוכן ל-67% */
+  transform-origin: center; /* הטרנספורמציה מתבצעת מהמרכז */
+}
+/* מיכל */
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px; /* רוחב מקסימלי */
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* Progress Bar */
+.progress {
+  width: 100%;
+  background: #ddd;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #42a0f9;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Question */
+.question {
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  padding: 10px 15px;
+  background: #f1f1f1;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 25px;
+}
+
+.option:hover {
+  background: #e6f3ff;
+  border-color: #42a0f9;
+}
+
+.option.selected {
+  background: #42a0f9;
+  color: white;
+  border-color: #42a0f9;
+}
+
+/* Buttons */
+.next-button, .save-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 25px;
+}
+
+.next-button.disabled, .save-button.disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+/* Scrollable Container */
+.scrollable-container {
+  height: 150px;
+  width: 300px;
+  overflow-y: auto;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  background: #f9f9f9;
+  font-size: 25px;
+  text-align: center;
+
+}
+
+.scrollable {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.scrollable li {
+  font-size: 25px;
+  color: #888;
+  height: 40px;
+  line-height: 40px;
+  transition: color 0.3s, font-size 0.3s;
+}
+
+.scrollable li:hover {
+  background: #e6f3ff;
+  border-color: #42a0f9;
+  font-size: 30px;
+
+}
+
+.scrollable li.active {
+  background: #42a0f9;
+  color: white;
+  border-color: #42a0f9;
+}
+
+.goal-input input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 25px;
+  box-sizing: border-box;
+}
+
+/* Notifications */
+.notification-input input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 25px;
+  box-sizing: border-box;
+}
+
+.notification-input button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.notification-input button:hover {
+  background: #3586d6;
+}
+
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.notification-list li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+}
+
+.delete-button {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+.delete-button:hover {
+  background: #e63939;
+}
+
+/* Progress Circle */
+.progress-circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background: conic-gradient(#007BFF var(--progress), #f0f0f0 var(--progress));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+}
+.progress-ring text {
+  font-size: 20px; /* גודל הטקסט */
+  fill: #007BFF; /* צבע הטקסט */
+  font-weight: bold; /* טקסט מודגש */
+}
+
+.circle-inner {
+  width: 90%;
+  height: 90%;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+/* Intake Section */
+.intake-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.intake-input-wrapper input {
+  width: 100%;
+  padding: 10px;
+  font-size: 25px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.intake-input-wrapper button {
+  padding: 10px 20px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.intake-input-wrapper button:hover {
+  background: #0056b3;
+}
+
+/* Motivation Message */
+#motivationMessage {
+  margin: 20px 0;
+  font-size: 25px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Notifications Section */
+.notifications {
+  margin-top: 20px;
+}
+
+.notifications h2 {
+  font-size: 25px;
+  color: #007BFF;
+  margin-bottom: 10px;
+}
+
+.notifications ul {
+  list-style: none;
+  padding: 0;
+}
+
+.notifications li {
+  font-size: 25px;
+  background: #f9f9f9;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notifications li strong {
+  color: #007BFF;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #container {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .progress-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .circle-inner {
+    font-size: 25px;
+  }
+
+  .intake-input-wrapper input {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  #container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .progress-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .circle-inner {
+    font-size: 25px;
+  }
+
+  .notifications h2 {
+    font-size: 25px;
+  }
+
+  .notifications li {
+    background: linear-gradient(to right, #f0f8ff, #e6f7ff);
+    margin: 10px 0;
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  
+  .notifications li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .notifications li strong {
+    color: #007BFF;
+    margin-right: 10px;
+  }
+  
+  .notifications li .icon {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #42a0f9;
+  }
+
+  .notification-input button {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #42a0f9, #3586d6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s ease;
+  }
+  
+  .notification-input button:hover {
+    background: linear-gradient(45deg, #3586d6, #42a0f9);
+  }
+  
+  .delete-button {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-button:hover {
+    background-color: #e63939;
+  }
+  .notification-input button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #42a0f9, #3586d6);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+
+.notification-input button:hover {
+  background: linear-gradient(45deg, #3586d6, #42a0f9);
+}
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 500px;
+}
+.cup-selection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+.cup {
+  text-align: center;
+  cursor: pointer;
+}
+.cup img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+}
+.close-modal {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.close-modal:hover {
+  background: #0056b3;
+}
+.label{
+  font-size: 25px;
+}
+.add-water-button{
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* למרכז את התמונה */
+}
+
+p {
+  font-size: 25px;
+}
+
+label{
+  font-size: 25px;
+}
+.question-image {
+  max-width: 200px;
+  max-height: 200px;
+  margin-left: 20px;
+}
+.close-modal {
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+/* עיצוב כללי לטיפות */
+.dripping-drops {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+}
+
+.drop {
+  position: absolute;
+  top: -50px;
+  width: 10px;
+  height: 10px;
+  background-color: #42a0f9;
+  border-radius: 50%;
+  animation: drop-fall 2s infinite;
+  opacity: 0.8;
+}
+
+.drop:nth-child(1) {
+  left: 40%;
+  animation-delay: 0s;
+}
+
+.drop:nth-child(2) {
+  left: 50%;
+  animation-delay: 0.5s;
+}
+
+.drop:nth-child(3) {
+  left: 60%;
+  animation-delay: 1s;
+}
+
+/* אנימציה לטיפות */
+@keyframes drop-fall {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+}
+.logout-button {
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+.add-water-manually-button{
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+.add-water-button{
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+.analytics-button{
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+.edit-button{
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+.manualWaterInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 25px;
+  box-sizing: border-box;
+}
+.logout-button,
+.add-water-manually-button,
+.add-water-button,
+.analytics-button,
+.edit-button {
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 20px; /* מעט קטן יותר לשיפור יחס מרווחים */
+  margin: 5px; /* מרווח בין הכפתורים */
+}
+
+.close-modal {
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+.submit-button{
+   background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+.submitManualWater{
+     background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+.login-button{
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px
+}
+/* עיצוב הקונטיינר של ה-select */
+#reminderTime {
+ height: 50px;
+  width: 300px;
+  overflow-y: auto;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  background: #f9f9f9;
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 20px; /* רווח תחתון */
+
+}
+
+/* עיצוב האופציות */
+#reminderTime option {
+  font-size: 25px;
+  color: #888;
+  height: 40px;
+  line-height: 40px;
+  transition: color 0.3s, font-size 0.3s;
+}
+
+/* עיצוב בעת ריחוף */
+#reminderTime option:hover {
+  background: #42a0f9;
+  border-color: : #42a0f9;
+  font-size: 30px;
+}
+
+/* עיצוב בעת בחירה */
+#reminderTime option:checked {
+  background: #42a0f9;
+  color: white;
+  border-color: #42a0f9;
+}
+#manualWaterInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 25px;
+  box-sizing: border-box;
+}
+
+.table-responsive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 90%; /* Adjust the maximum width to fit better */
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  margin: 20px auto; /* Center the container */
+  overflow: auto; /* Allow both horizontal and vertical scrolling if needed */
+  max-height: 80vh; /* Ensure it doesn't exceed the viewport height */
+}
+
+#usersTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* Allow dynamic column sizing */
+}
+
+#usersTable th,
+#usersTable td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 17px; /* Adjusted font size */
+  word-wrap: break-word; /* Ensure long text wraps */
+}
+
+#usersTable thead th {
+  background-color: #007bff; /* Table header color */
+  color: white; /* Text color for header */
+  font-weight: bold;
+}
+
+#usersTable tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#usersTable tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.logout-button {
+  background: #42a0f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 25px
+}
+
+.logout-button:hover {
+  background-color: #42a0f9;
+}
